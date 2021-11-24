@@ -2,7 +2,7 @@ import time
 import board
 from adafruit_matrixportal.matrixportal import MatrixPortal
 
-EVENT_YEAR = 2020
+EVENT_YEAR = 2021
 EVENT_MONTH = 12
 EVENT_DAY = 25
 EVENT_HOUR = 00
@@ -11,10 +11,9 @@ EVENT_MINUTE = 00
 FRAME_DURATION = 2
 FRAMES = (
     "DAYS",
-    "HOURS",
-    "MINUTES",
-    "Until",
-    "Christmas",
+    "bmps/christmas.bmp",
+    "Layaway",
+    "Now",
 )
 
 SYNCHRONIZE_CLOCK = True
@@ -39,7 +38,7 @@ def set_time_until(unit=None):
             EVENT_DAY,
             EVENT_HOUR,
             EVENT_MINUTE,
-            0, 
+            0,
             -1,
             -1,
             False,
@@ -73,6 +72,10 @@ def set_time_until(unit=None):
         text = "  Until"
     if unit == "Christmas":
         text = "XMAS"
+    if unit == "Layaway":
+        text = "layaway"
+    if unit == "Now":
+        text = "  now"
     matrixportal.set_text(text)
     matrixportal.set_background(0)
 
@@ -109,4 +112,3 @@ while time.monotonic() < start_time + FRAME_DURATION:
 while True:
     set_next_frame()
     time.sleep(FRAME_DURATION)
-
